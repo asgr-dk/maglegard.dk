@@ -20,4 +20,4 @@ jobs:
           --pure:A2 --pure:A3 --pure:A4 --pure:A5 --pure:A6 --pure:A7 --pure:A8 --pure:A9 \
           build/main.js
         mv source/Main.html _site/index.html
-        mv robots.txt build images _site
+        mv robots.txt build image _site

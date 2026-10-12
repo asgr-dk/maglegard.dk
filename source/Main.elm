@@ -11,27 +11,27 @@ import Time
 import Url exposing (Url)
 
 
-images : List { src : String, description : String }
-images =
-    [ { src = "/images/farm_close.jpeg", description = "Maglegard, få kilometer udenfor Ribe." }
-    , { src = "/images/horsewagon_ribe.jpeg", description = "Turistkørsel i Ribes smukke gader." }
-    , { src = "/images/horsewagon_wedding_front.jpeg", description = "Bryllupskørsel med originale uniformer, lygter, og seletøj." }
-    , { src = "/images/horsewagon_wedding_back.jpeg", description = "Bryllupskørsel med originale uniformer, lygter, og seletøj." }
-    , { src = "/images/horsewagon_wedding_close.jpeg", description = "Bryllupskørsel med originale uniformer, lygter, og seletøj." }
-    , { src = "/images/horsewagon_harness.jpeg", description = "Bryllupskørsel med originale uniformer, lygter, og seletøj." }
-    , { src = "/images/horsewagon_horses.jpeg", description = "Oldenborgere på gårdens marker." }
-    , { src = "/images/workshop_wagonwheel.jpeg", description = "Reparation af hjul til hestevogn." }
-    , { src = "/images/workshop_lantern4.jpeg", description = "Reparation af originalt vognlygte." }
-    , { src = "/images/workshop_lantern5.jpeg", description = "Reparation af originalt vognlygte." }
-    , { src = "/images/workshop_lantern6.jpeg", description = "Reparation af originalt vognlygte." }
-    , { src = "/images/workshop_lantern2.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
-    , { src = "/images/workshop_lantern3.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
-    , { src = "/images/workshop_lantern7.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
-    , { src = "/images/workshop_lantern8.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
-    , { src = "/images/workshop_lantern9.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
-    , { src = "/images/workshop_lantern10.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
-    , { src = "/images/workshop_lantern11.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
-    , { src = "/images/workshop_tools.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
+image : List { src : String, description : String }
+image =
+    [ { src = "/image/farm_close.jpeg", description = "Maglegard, få kilometer udenfor Ribe." }
+    , { src = "/image/horsewagon_ribe.jpeg", description = "Turistkørsel i Ribes smukke gader." }
+    , { src = "/image/horsewagon_wedding_front.jpeg", description = "Bryllupskørsel med originale uniformer, lygter, og seletøj." }
+    , { src = "/image/horsewagon_wedding_back.jpeg", description = "Bryllupskørsel med originale uniformer, lygter, og seletøj." }
+    , { src = "/image/horsewagon_wedding_close.jpeg", description = "Bryllupskørsel med originale uniformer, lygter, og seletøj." }
+    , { src = "/image/horsewagon_harness.jpeg", description = "Bryllupskørsel med originale uniformer, lygter, og seletøj." }
+    , { src = "/image/horsewagon_horses.jpeg", description = "Oldenborgere på gårdens marker." }
+    , { src = "/image/workshop_wagonwheel.jpeg", description = "Reparation af hjul til hestevogn." }
+    , { src = "/image/workshop_lantern4.jpeg", description = "Reparation af originalt vognlygte." }
+    , { src = "/image/workshop_lantern5.jpeg", description = "Reparation af originalt vognlygte." }
+    , { src = "/image/workshop_lantern6.jpeg", description = "Reparation af originalt vognlygte." }
+    , { src = "/image/workshop_lantern2.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
+    , { src = "/image/workshop_lantern3.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
+    , { src = "/image/workshop_lantern7.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
+    , { src = "/image/workshop_lantern8.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
+    , { src = "/image/workshop_lantern9.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
+    , { src = "/image/workshop_lantern10.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
+    , { src = "/image/workshop_lantern11.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
+    , { src = "/image/workshop_tools.jpeg", description = "Diverse originale lygter til reservedele, reparation og salg." }
     ]
 
 
@@ -98,7 +98,7 @@ subs : Model -> Sub Msg
 subs model =
     if model.isGalleryActive then
         Time.every 5000
-            (always (SelectGalleryIndex (modBy (List.length images) (model.currentGalleryIndex + 1))))
+            (always (SelectGalleryIndex (modBy (List.length image) (model.currentGalleryIndex + 1))))
 
     else
         Sub.none
@@ -130,7 +130,7 @@ viewGallery : Model -> Element Msg
 viewGallery { currentGalleryIndex, isGalleryActive } =
     Element.column [ Element.width Element.fill, Element.spacing 20 ]
         [ Element.paragraph [ Font.size 30 ] [ Element.text "Velkommen til Maglegard" ]
-        , case List.drop currentGalleryIndex images of
+        , case List.drop currentGalleryIndex image of
             [] ->
                 Element.none
 
@@ -152,7 +152,7 @@ viewGallery { currentGalleryIndex, isGalleryActive } =
                             , left = 0
                             }
                         ]
-                        (List.indexedMap (viewGalleryButton currentGalleryIndex) images)
+                        (List.indexedMap (viewGalleryButton currentGalleryIndex) image)
                     ]
         ]
 
@@ -212,7 +212,7 @@ viewHorsewagon =
             , Element.paragraph [ Font.size 20 ] [ Element.text "Ved særlig anledning vil der blive brugt original uniformer, vognlygter og seletøj." ]
             ]
         , Element.column [ Element.alignTop ]
-            [ Element.image [ Element.width (Element.px 300) ] { src = "/asset/horsewagon_sled.jpeg", description = "..." }
+            [ Element.image [ Element.width (Element.px 300) ] { src = "/image/horsewagon_sled.jpeg", description = "..." }
             , Element.paragraph [ Font.size 15 ] [ Element.text "Der er mange originale vogne til forskellige anledninger." ]
             ]
         ]
@@ -235,7 +235,7 @@ viewLantern =
             , Element.paragraph [ Font.size 20 ] [ Element.text "Det flotte håndværk betyder at lygterne kan vedligeholdes tro mod deres historiske rødder." ]
             ]
         , Element.column [ Element.alignTop ]
-            [ Element.image [ Element.width (Element.px 300) ] { src = "/asset/workshop_lantern.jpeg", description = "..." }
+            [ Element.image [ Element.width (Element.px 300) ] { src = "/image/workshop_lantern.jpeg", description = "..." }
             , Element.paragraph [ Font.size 15 ] [ Element.text "Flotte vognlygter bliver købt, solgt og repareret." ]
             ]
         ]
@@ -257,7 +257,7 @@ viewFurniture =
             , Element.paragraph [ Font.size 20 ] [ Element.text "Hvis du er på jagt efter noget særligt kan du besøge Niels på gården og gå på opdagelse i det store udvalg af originale møbler." ]
             ]
         , Element.column [ Element.alignTop ]
-            [ Element.image [ Element.width (Element.px 300) ] { src = "/asset/workshop_woodwork.jpeg", description = "..." }
+            [ Element.image [ Element.width (Element.px 300) ] { src = "/image/workshop_woodwork.jpeg", description = "..." }
             , Element.paragraph [ Font.size 15 ] [ Element.text "Der handles med flotte antikke møbler." ]
             ]
         ]
