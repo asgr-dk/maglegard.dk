@@ -11,8 +11,8 @@ import Time
 import Url exposing (Url)
 
 
-image : List { src : String, description : String }
-image =
+images : List { src : String, description : String }
+images =
     [ { src = "/image/farm_close.jpeg", description = "Maglegard, få kilometer udenfor Ribe." }
     , { src = "/image/horsewagon_ribe.jpeg", description = "Turistkørsel i Ribes smukke gader." }
     , { src = "/image/horsewagon_wedding_front.jpeg", description = "Bryllupskørsel med originale uniformer, lygter, og seletøj." }
@@ -98,7 +98,7 @@ subs : Model -> Sub Msg
 subs model =
     if model.isGalleryActive then
         Time.every 5000
-            (always (SelectGalleryIndex (modBy (List.length image) (model.currentGalleryIndex + 1))))
+            (always (SelectGalleryIndex (modBy (List.length images) (model.currentGalleryIndex + 1))))
 
     else
         Sub.none
@@ -130,7 +130,7 @@ viewGallery : Model -> Element Msg
 viewGallery { currentGalleryIndex, isGalleryActive } =
     Element.column [ Element.width Element.fill, Element.spacing 20 ]
         [ Element.paragraph [ Font.size 30 ] [ Element.text "Velkommen til Maglegard" ]
-        , case List.drop currentGalleryIndex image of
+        , case List.drop currentGalleryIndex images of
             [] ->
                 Element.none
 
