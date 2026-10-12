@@ -152,7 +152,7 @@ viewGallery { currentGalleryIndex, isGalleryActive } =
                             , left = 0
                             }
                         ]
-                        (List.indexedMap (viewGalleryButton currentGalleryIndex) image)
+                        (List.indexedMap (viewGalleryButton currentGalleryIndex) images)
                     ]
         ]
 
