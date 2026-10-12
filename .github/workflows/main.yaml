@@ -1,0 +1,23 @@
+on:
+  push:
+    tags: ["*"]
+    branches: [main]
+
+jobs:
+  github-pages:
+    uses: asgr-dk/actions/.github/workflows/github-pages.yaml@1.0.0
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    with:
+      get-esbuild: true  
+      get-elm: true
+      script: |
+        elm make --optimize --output build/main.js source/Main.elm
+        esbuild --allow-overwrite --minify --outfile=build/main.js --pure:F \
+          --pure:F2 --pure:F3 --pure:F4 --pure:F5 --pure:F6 --pure:F7 --pure:F8 --pure:F9 \
+          --pure:A2 --pure:A3 --pure:A4 --pure:A5 --pure:A6 --pure:A7 --pure:A8 --pure:A9 \
+          build/main.js
+        mv source/Main.html _site/index.html
+        mv build _site
