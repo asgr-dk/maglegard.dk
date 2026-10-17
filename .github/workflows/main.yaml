@@ -5,13 +5,13 @@ on:
 
 jobs:
   github-pages:
-    uses: asgr-dk/actions/.github/workflows/github-pages.yaml@1.0.0
+    uses: asgr-dk/actions/.github/workflows/github-pages.yaml@1.1.0
     permissions:
       contents: read
       pages: write
       id-token: write
     with:
-      get-esbuild: true  
+      get-esbuild: true
       get-elm: true
       script: |
         elm make --optimize --output build/main.js source/Main.elm
